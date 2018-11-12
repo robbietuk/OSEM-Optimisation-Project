@@ -17,7 +17,7 @@
 % See STIR/LICENSE.txt for details
 
 %% read an image using STIR
-image=stir.FloatVoxelsOnCartesianGrid.read_from_file('../../recon_test_pack/test_image_3.hv');
+image=stir.FloatVoxelsOnCartesianGrid.read_from_file('DEMOS/recon_test_pack/test_image_3.hv');
 
 %% convert data to matlab3d array
 matimage=image.to_matlab();
@@ -25,7 +25,7 @@ matimage=image.to_matlab();
 %% make some plots
 % first a bitmap
 figure()
-imshow(matimage(:,:,10),[]);
+imshow(imresize(matimage(:,:,10),4),[]);
 title('slice 10 (starting from 0)')
 % now a profile
 figure()
@@ -34,13 +34,13 @@ xlabel('x')
 title('slice 10, line 45 (starting from 0)')
 
 %% example for projection data (aka sinograms)
-projdata=stir.ProjData.read_from_file('../../recon_test_pack/SPECT/input.hs');
+projdata=stir.ProjData.read_from_file('DEMOS/recon_test_pack/SPECT/input.hs');
 %% display direct sinograms
 % Of course, for SPECT there are only 'direct' sinograms (and no oblique sinograms)
 seg=projdata.get_segment_by_sinogram(0);
 matseg=seg.to_matlab();
 figure;
-imshow(matseg(:,:,10)',[])
+imshow(imresize(matseg(:,:,10)',4),[])
 title '10th sinogram'
 %% do a little movie rotating around the object
 threshold=max(matseg(:)*.6);

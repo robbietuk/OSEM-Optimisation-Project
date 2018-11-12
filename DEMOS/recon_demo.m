@@ -17,7 +17,7 @@
 % See STIR/LICENSE.txt for details
 
 %% go to directory with input files
-cd ../recon_demo
+cd DEMOS/recon_demo
 %% initialise reconstruction object
 % we will do this here via a .par file 
 recon=stir.OSMAPOSLReconstruction3DFloat('recon_demo_OSEM.par');
