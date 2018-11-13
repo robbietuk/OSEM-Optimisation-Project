@@ -17,6 +17,8 @@
 % See STIR/LICENSE.txt for details
 clear;clc;
 
+%% go to main dir.
+cd ~/OneDrive/Documents/UCL/STIR/Code/MATLAB_scripts/OSEM-Optimisation-Project
 
 %% go to directory with input files
 cd DEMOS/recon_demo
@@ -25,7 +27,7 @@ cd DEMOS/recon_demo
 recon=stir.OSMAPOSLReconstruction3DFloat('recon_demo_OSEM.par');
 
 %% now modify a few settings from in MATLAB for illustration
-recon.set_num_subsets(2);
+recon.set_num_subsets(1);
 % set filenames to save subset sensitivities (for illustration purposes)
 poissonobj=recon.get_objective_function();
 poissonobj.set_subsensitivity_filenames('sens_subset%d.hv');
@@ -35,14 +37,18 @@ poissonobj.set_recompute_sensitivity(true)
 target=stir.FloatVoxelsOnCartesianGrid.read_from_file('init.hv');
 % we will just fill the whole array with 1 here
 target.fill(1)
-cd ../..
+
+
+%% go to directory for reconstruction output dumps
+cd ../../OSEM_Project_Scripts/test_image_dump
+
 %% run a few iterations and plot intermediate results
 s=recon.set_up(target);
 figure()
 hold on;
 
 
-for iter=1:2
+for iter=1:10
     fprintf( '\n--------------------- Subiteration %d\n', iter);
     recon.set_start_subiteration_num(iter)
     recon.set_num_subiterations(iter)
@@ -57,7 +63,6 @@ for iter=1:2
     investigate_slice = 8;
     subplot(2,1,1); plot(image(:,30,investigate_slice))
     subplot(2,1,2); imshow(image(:,:,investigate_slice),[],'InitialMagnification','fit'); colorbar;
-    pause(.5)
     drawnow
 end
 
@@ -71,4 +76,11 @@ end
 % end
 
 
-vis3d(image,'parula')
+%% Return to main project dir
+cd ../../
+
+%% Launch 3Dvis tool for user reconstruction analysis
+% vis3d(image)
+
+
+
