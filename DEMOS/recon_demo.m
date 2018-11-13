@@ -15,12 +15,15 @@
 % GNU Lesser General Public License for more details.
 %
 % See STIR/LICENSE.txt for details
+clear;clc;
+
 
 %% go to directory with input files
 cd DEMOS/recon_demo
 %% initialise reconstruction object
 % we will do this here via a .par file 
 recon=stir.OSMAPOSLReconstruction3DFloat('recon_demo_OSEM.par');
+
 %% now modify a few settings from in MATLAB for illustration
 recon.set_num_subsets(2);
 % set filenames to save subset sensitivities (for illustration purposes)
@@ -32,7 +35,7 @@ poissonobj.set_recompute_sensitivity(true)
 target=stir.FloatVoxelsOnCartesianGrid.read_from_file('init.hv');
 % we will just fill the whole array with 1 here
 target.fill(1)
-
+cd ../..
 %% run a few iterations and plot intermediate results
 s=recon.set_up(target);
 if (isequal(s,stir.Succeeded(stir.Succeeded.yes)))

@@ -15,10 +15,12 @@
 %
 % See STIR/LICENSE.txt for details
 
-%% go to directory with input files
-cd ../recon_demo
+%% go to directory with input files 
+% cd DEMOS/recon_demo      $REMOVED BECASUE NOT USING THE SAME
+% FILESTRUCTURE
+
 %%
-projdata=stir.ProjData.read_from_file('smalllong.hs');
+projdata=stir.ProjData.read_from_file('DEMOS/recon_demo/smalllong.hs');
 % use smaller voxels than the default
 zoom=2.216842;
 target=stir.FloatVoxelsOnCartesianGrid(projdata.get_proj_data_info(), zoom);

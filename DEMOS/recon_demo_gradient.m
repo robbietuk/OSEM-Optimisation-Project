@@ -16,7 +16,7 @@
 % See STIR/LICENSE.txt for details
 
 %% go to directory with input files
-cd ../recon_demo
+cd DEMOS/recon_demo
 %% initialise reconstruction object
 % we will do this here via a .par file 
 recon=stir.OSMAPOSLReconstruction3DFloat('recon_demo_OSEM.par');
@@ -27,6 +27,8 @@ poissonobj.set_subsensitivity_filenames('sens_subset%d.hv')
 poissonobj.set_recompute_sensitivity(true)
 %% construct image related to the data to reconstruct
 projdata=stir.ProjData.read_from_file('smalllong.hs');
+cd ../..
+
 % use smaller voxels than the default
 zoom=2.216842;
 target=stir.FloatVoxelsOnCartesianGrid(projdata.get_proj_data_info(), zoom);
