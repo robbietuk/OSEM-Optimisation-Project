@@ -18,7 +18,7 @@
 %% go to directory with input files 
 % cd DEMOS/recon_demo      $REMOVED BECASUE NOT USING THE SAME
 % FILESTRUCTURE
-
+clear;clc;
 %%
 projdata=stir.ProjData.read_from_file('DEMOS/recon_demo/smalllong.hs');
 % use smaller voxels than the default
